@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Quickstart.Models.Configuration;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 namespace Quickstart
 {
@@ -26,6 +27,8 @@ namespace Quickstart
         {
             services.AddControllersWithViews();
             services.Configure<TwilioAccountDetails>(Configuration.GetSection("TwilioAccountDetails"));
+            services.AddSwaggerGen();
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +42,13 @@ namespace Quickstart
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Twilio");
+            });
+
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -1,7 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
+    <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
+    <ApplicationInsightsResourceId>/subscriptions/fb6fcac5-1f41-4324-b35b-21860301fcc6/resourceGroups/twilio-test-rg/providers/microsoft.insights/components/twilio-test-qs</ApplicationInsightsResourceId>
+    <UserSecretsId>bb491f35-3348-4807-8526-e1dcd5821c98</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +16,11 @@
     <Folder Include="Models\Configuration\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.21.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
     <PackageReference Include="Twilio" Version="5.65.0" />
     <PackageReference Include="Faker.Net" Version="1.5.138" />
   </ItemGroup>
